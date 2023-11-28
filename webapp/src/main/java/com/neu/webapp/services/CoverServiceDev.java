@@ -4,6 +4,7 @@ import com.neu.webapp.models.Book;
 import com.neu.webapp.models.Cover;
 import com.neu.webapp.repositories.BookRepository;
 import com.neu.webapp.repositories.CoverRepository;
+import io.github.pixee.security.Filenames;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -38,7 +39,7 @@ public class CoverServiceDev implements CoverService {
         if(!dir.exists()) {
             dir.mkdir();
         }
-        localPath +=id+"-"+imageFile.getOriginalFilename();
+        localPath +=id+"-"+Filenames.toSimpleFileName(imageFile.getOriginalFilename());
         File file = new File(localPath);
         file.createNewFile();
         FileOutputStream fout = new FileOutputStream(file);

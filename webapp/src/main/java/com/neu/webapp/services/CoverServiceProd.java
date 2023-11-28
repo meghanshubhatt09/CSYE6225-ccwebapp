@@ -9,6 +9,7 @@ import com.neu.webapp.models.Cover;
 import com.neu.webapp.repositories.BookRepository;
 import com.neu.webapp.repositories.CoverRepository;
 import com.neu.webapp.restControllers.CoverRestController;
+import io.github.pixee.security.Filenames;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,7 +82,7 @@ public class CoverServiceProd implements CoverService {
 
     @Override
     public String writeFile(MultipartFile imageFile, UUID id, String localPath) throws Exception {
-        String fileName = id+"-"+imageFile.getOriginalFilename();
+        String fileName = id+"-"+Filenames.toSimpleFileName(imageFile.getOriginalFilename());
         File file = multipartToFile(imageFile, fileName);
         try {
             s3.putObject(BUCKET_NAME, fileName, file);
