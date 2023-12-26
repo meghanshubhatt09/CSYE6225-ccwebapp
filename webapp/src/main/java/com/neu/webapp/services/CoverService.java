@@ -22,7 +22,7 @@ public interface CoverService {
     }
 
     default boolean isFileFormatRight(String fileMimeType) {
-        if(fileMimeType.equals(JPEG) || fileMimeType.equals(JPG) || fileMimeType.equals(PNG)) return true;
+        if(JPEG.equals(fileMimeType) || JPG.equals(fileMimeType) || PNG.equals(fileMimeType)) return true;
         return false;
     }
 
